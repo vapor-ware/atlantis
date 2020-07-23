@@ -3,7 +3,7 @@ ADD https://github.com/vapor-ware/sctl/releases/download/1.4.2/sctl_1.4.2_Linux_
 WORKDIR /tmp
 RUN tar xvfz sctl.tar.gz
 
-FROM runatlantis/atlantis:latest
+FROM runatlantis/atlantis:v0.14.0
 COPY --from=0 /tmp/sctl /usr/local/bin/sctl
 
 # install terraform binaries
