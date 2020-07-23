@@ -5,7 +5,7 @@
 # Atlantis
 
 <p align="center">
-  <img src="./runatlantis.io/.vuepress/public/hero.png" alt="Atlantis Logo"/><br><br>
+  <img src="https://github.com/runatlantis/atlantis/blob/master/runatlantis.io/.vuepress/public/hero.png?raw=true" alt="Atlantis Logo"/><br><br>
   <b>Terraform Pull Request Automation</b>
 </p>
 
