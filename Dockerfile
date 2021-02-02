@@ -3,14 +3,15 @@ ADD https://github.com/vapor-ware/sctl/releases/download/1.4.2/sctl_1.4.2_Linux_
 WORKDIR /tmp
 RUN tar xvfz sctl.tar.gz
 
-FROM runatlantis/atlantis:v0.14.0
+FROM runatlantis/atlantis:v0.16.0
 COPY --from=0 /tmp/sctl /usr/local/bin/sctl
 
 # install terraform binaries
-ENV DEFAULT_TERRAFORM_VERSION=0.12.29
+ENV NEEDED_TERRAFORM_VERSIONS="0.12.29 0.13.6 0.14.3"
+ENV DEFAULT_TERRAFORM_VERSION=0.14.3
 
 # In the official Atlantis image we only have the latest of each Terraform version.
-RUN AVAILABLE_TERRAFORM_VERSIONS="${DEFAULT_TERRAFORM_VERSION}" && \
+RUN AVAILABLE_TERRAFORM_VERSIONS="${NEEDED_TERRAFORM_VERSIONS}" && \
     rm -f /usr/local/bin/terraform && \
     for VERSION in ${AVAILABLE_TERRAFORM_VERSIONS}; do \
         curl -LOs https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip && \
