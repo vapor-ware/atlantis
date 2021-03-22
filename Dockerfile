@@ -1,5 +1,8 @@
 FROM vaporio/foundation:latest as builder
-ADD https://github.com/vapor-ware/sctl/releases/download/1.4.2/sctl_1.4.2_Linux_x86_64.tar.gz /tmp/sctl.tar.gz
+
+ENV SCTL_VERSION=1.5.0
+
+ADD https://github.com/vapor-ware/sctl/releases/download/${SCTL_VERSION}/sctl_${SCTL_VERSION}_Linux_x86_64.tar.gz /tmp/sctl.tar.gz
 WORKDIR /tmp
 RUN tar xvfz sctl.tar.gz
 
