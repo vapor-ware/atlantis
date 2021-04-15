@@ -10,8 +10,8 @@ FROM runatlantis/atlantis:v0.16.0
 COPY --from=0 /tmp/sctl /usr/local/bin/sctl
 
 # install terraform binaries
-ENV NEEDED_TERRAFORM_VERSIONS="0.13.6 0.14.3"
-ENV DEFAULT_TERRAFORM_VERSION=0.14.3
+ENV NEEDED_TERRAFORM_VERSIONS="0.13.6 0.14.3 0.14.10"
+ENV DEFAULT_TERRAFORM_VERSION=0.14.10
 
 # In the official Atlantis image we only have the latest of each Terraform version.
 RUN AVAILABLE_TERRAFORM_VERSIONS="${NEEDED_TERRAFORM_VERSIONS}" && \
