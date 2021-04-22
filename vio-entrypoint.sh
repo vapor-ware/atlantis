@@ -14,4 +14,5 @@ fi
 # We've done our custom overrides to the init process, go ahead
 # and initiate the original entrypoint provided by the runatlantis/atlantis container image
 
-/docker-entrypoint.sh
+# IDK why, but this exists in path. so go atlantis team. yay
+docker-entrypoint.sh

@@ -30,4 +30,4 @@ RUN AVAILABLE_TERRAFORM_VERSIONS="${NEEDED_TERRAFORM_VERSIONS}" && \
 
 ADD vio-entrypoint.sh /vio-entrypoint.sh
 
-ENTRYPOINT [ "vio-entrypoint.sh" ]
+ENTRYPOINT [ "/vio-entrypoint.sh" ]
