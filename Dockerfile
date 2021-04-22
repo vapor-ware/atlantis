@@ -17,14 +17,17 @@ ENV DEFAULT_TERRAFORM_VERSION=0.14.10
 RUN AVAILABLE_TERRAFORM_VERSIONS="${NEEDED_TERRAFORM_VERSIONS}" && \
     rm -f /usr/local/bin/terraform && \
     for VERSION in ${AVAILABLE_TERRAFORM_VERSIONS}; do \
-        curl -LOs https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip && \
-        curl -LOs https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_SHA256SUMS && \
-        sed -n "/terraform_${VERSION}_linux_amd64.zip/p" terraform_${VERSION}_SHA256SUMS | sha256sum -c && \
-        mkdir -p /usr/local/bin/tf/versions/${VERSION} && \
-        unzip -o terraform_${VERSION}_linux_amd64.zip -d /usr/local/bin/tf/versions/${VERSION} && \
-        ln -fs /usr/local/bin/tf/versions/${VERSION}/terraform /usr/local/bin/terraform${VERSION} && \
-        rm terraform_${VERSION}_linux_amd64.zip && \
-        rm terraform_${VERSION}_SHA256SUMS; \
+    curl -LOs https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip && \
+    curl -LOs https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_SHA256SUMS && \
+    sed -n "/terraform_${VERSION}_linux_amd64.zip/p" terraform_${VERSION}_SHA256SUMS | sha256sum -c && \
+    mkdir -p /usr/local/bin/tf/versions/${VERSION} && \
+    unzip -o terraform_${VERSION}_linux_amd64.zip -d /usr/local/bin/tf/versions/${VERSION} && \
+    ln -fs /usr/local/bin/tf/versions/${VERSION}/terraform /usr/local/bin/terraform${VERSION} && \
+    rm terraform_${VERSION}_linux_amd64.zip && \
+    rm terraform_${VERSION}_SHA256SUMS; \
     done && \
     ln -s /usr/local/bin/tf/versions/${DEFAULT_TERRAFORM_VERSION}/terraform /usr/local/bin/terraform
 
+ADD vio-entrypoint.sh /vio-entrypoint.sh
+
+ENTRYPOINT [ "vio-entrypoint.sh" ]
