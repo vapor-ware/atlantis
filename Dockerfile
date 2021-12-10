@@ -1,6 +1,6 @@
 ## Stage 0
 ## Pull in tools like sctl and gcloud SDK
-FROM vaporio/foundation:latest as builder
+FROM docker.io/vaporio/foundation:latest as builder
 
 ENV SCTL_VERSION=1.5.0
 ENV GCLOUD_SDK_VERSION=360.0.0
@@ -16,7 +16,7 @@ RUN tar xvfz jenkins-trigger.tar.gz
 
 ## Final stage
 ## Atlantis image
-FROM runatlantis/atlantis:v0.16.0
+FROM docker.io/runatlantis/atlantis:v0.16.0
 COPY --from=builder /tmp/sctl /usr/local/bin/sctl
 COPY --from=builder /tmp/google-cloud-sdk /usr/local/google-cloud-sdk
 COPY --from=builder /tmp/jenkins-trigger /usr/local/bin/jenkins-trigger
